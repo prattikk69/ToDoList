@@ -9,6 +9,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
     <link rel="manifest" href="favicon_io/site.webmanifest">
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
@@ -30,6 +31,9 @@
     </div>
 
     <script>
+        if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/sw.js");
+    }
         const inputTask = document.getElementById('inputTask');
         const addTask = document.getElementById('addTask');
         const taskList = document.getElementById('taskList');
