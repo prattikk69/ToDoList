@@ -1,4 +1,2 @@
-# still under development
-cannot save the tasks currently
-app will be updated soon
-👍
+[Go to the site](https://prattikk69.github.io/ToDOList)
+ complete working app version 2.0.0
