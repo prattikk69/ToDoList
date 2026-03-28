@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My to do lists</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <span class="orb orb1"></span>
+    <span class="orb orb2"></span>
+    <span class="orb orb3"></span>
+
+
+
+    <div class="container">
+        <nav><div class="user">User</div>
+            <menu><ul><li id="deleteAllTask">Delete All Tasks</li></ul></menu></nav>
+            <div class="inputField">
+                <input type="text" name="tasks" id="inputTask" placeholder="Enter tasks here...">
+                <button id="addTask">Add Task</button>
+            </div>
+            <p>To do list:</p>
+            <br>
+        <div class="taskContainer"><ul id="taskList"><ul></div>
+        <div class="keyboard" onclick="setFocus()"><i class="far fa-keyboard"></i></div>
+    </div>
+    <script>
+        const inputTask = document.getElementById('inputTask');
+        const addTask = document.getElementById('addTask');
+        const taskContainer = document.getElementById('taskContainer');
+        const taskList = document.getElementById('taskList');
+        const deleteAllTask = document.getElementById('deleteAllTask');
+        const user = document.querySelector('.user');
+
+        alert("keep in mind that this app is still under development.");
+
+        function addTheTask(){
+            if(inputTask.value === ""){
+                alert("task cannot be empty.");
+            }
+            else{
+                const li = document.createElement('li');
+                const liDiv = document.createElement('div');
+                liDiv.style.display = "flex";
+                liDiv.style.alignItems = "center";
+                liDiv.style.position = "relative";
+                const taskStatus = document.createElement('i');
+                const p = document.createElement('p');
+                p.textContent = inputTask.value;
+                p.style.cursor = "pointer";
+                const deleteIcon = document.createElement('i');
+                taskStatus.className = "fas fa-xmark";
+                taskStatus.style.color = "red";
+                deleteIcon.className = "far fa-trash-can";
+                deleteIcon.style.position = "absolute";
+                deleteIcon.style.right = "0";
+                liDiv.append(taskStatus,p,deleteIcon);
+                li.appendChild(liDiv);
+                taskList.appendChild(li);
+                inputTask.value = "";
+                const Element = [p, taskStatus];
+                Element.forEach(el =>{
+                    el.addEventListener('click', ()=>{
+                        p.classList.toggle('completed');
+                        if(p.classList.contains('completed')){
+                            taskStatus.classList.replace("fa-xmark", "fa-check");
+                            taskStatus.style.color = "limegreen";
+                        }
+                        else{
+                            taskStatus.classList.replace("fa-check", "fa-xmark");
+                            taskStatus.style.color = "red";
+                        }
+                    })
+                })
+                deleteIcon.addEventListener('click', () => {
+                    deleteIcon.classList.remove('fa-trash-can');
+                    deleteIcon.classList.add('fa-circle-check');
+                    setTimeout(() =>{ 
+                        li.remove()
+                        checkTask();
+                    }, 500);
+                });
+                deleteAllTask.addEventListener('click', ()=>{
+                    taskList.textContent = "";
+                    checkTask();
+                })
+            
+                checkTask();
+                }
+        }
+        addTask.addEventListener('click', ()=>{
+            addTheTask();
+        })
+        function checkTask(){
+            console.log("Checking tasks...");
+            
+            const p = document.createElement('p');
+            const i = document.createElement('i');
+            const piDiv = document.createElement('span');
+            i.style.color = "rgba(0,0,0,0.4)";
+            p.style.color = "rgba(0,0,0,0.4)";
+            p.style.display = "inline-block";
+            i.style.display = "inline-block";
+            i.className = "fas fa-ban";
+            p.textContent = "No task available right now.";
+            piDiv.appendChild(i);
+            piDiv.appendChild(p);
+            if (taskList.querySelectorAll("li").length < 1) {
+                taskList.appendChild(piDiv);
+            }
+            else{
+                if (taskList.querySelectorAll("li").length > 0) {
+                    taskList.querySelector('span').remove();
+                }
+            }
+        }
+        checkTask();
+        window.addEventListener('keydown', (e)=>{
+            if(e.key === 'Enter'){
+                addTheTask();
+            }
+        })
+
+        function setFocus(){
+        inputTask.focus();
+        }
+
+        // window.addEventListener('load', ()=>{
+        //     setTimeout(()=>{
+        //         setFocus()
+        //     },3000)
+        // })
+    </script>
+</body>
+</html>
