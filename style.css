@@ -56,7 +56,6 @@ nav li{
 }
 li{
     list-style: none;
-    display: inline-block;
 }
 nav{
     display: flex;
@@ -118,7 +117,8 @@ button:active{
 i{
     scale: .6;
     cursor: pointer;
-}
+}
+
 p,i{
     transition: .2s;
 }
