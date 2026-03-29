@@ -118,20 +118,7 @@ button:active{
 i{
     scale: .6;
     cursor: pointer;
-}
-.download{
-    height: 22px;
-    width: 22px;
-    border: solid .5px var(--moreTransparent);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-a{
-    color: black;
-}
+}
 p,i{
     transition: .2s;
 }
