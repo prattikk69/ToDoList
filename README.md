@@ -1,2 +1,2 @@
 [Go to the site](https://prattikk69.github.io/ToDoList)
- complete working app version 2.0.0
+ complete working app version 2.1
