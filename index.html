@@ -19,8 +19,10 @@
 
     <div class="container">
         <nav><div class="user">User</div>
-            <menu><ul>
-                <li id="deleteAllTask">Delete All Tasks</li></ul></menu></nav>
+            <menu><ul>
+                <li id="deleteAllTask">Delete All Tasks</li>
+            </ul></menu>
+        </nav>
             <div class="inputField">
                 <input type="text" name="tasks" id="inputTask" placeholder="Enter tasks here...">
                 <button id="addTask">Add Task</button>
@@ -28,150 +30,14 @@
             <p>To do list:</p>
             <br>
         <div class="taskContainer"><ul id="taskList"></ul></div>
-        <div class="keyboard" onclick="setFocus()"><i class="far fa-keyboard"></i></div>
+        <div class="keyboard" onclick="setFocus()"><i title="open keyboard" class="far fa-keyboard"></i></div>
     </div>
-
-    <script>
-        if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("/sw.js");
-    }
-        const inputTask = document.getElementById('inputTask');
-        const addTask = document.getElementById('addTask');
-        const taskList = document.getElementById('taskList');
-        const deleteAllTask = document.getElementById('deleteAllTask');
-        const User = document.querySelector('.user');
-
-        // ── Storage helpers ──────────────────────────────────────────────────────
-        function saveToStorage() {
-            const items = [...taskList.querySelectorAll('li')].map(li => ({
-                text: li.querySelector('p').textContent,
-                completed: li.querySelector('p').classList.contains('completed')
-            }));
-            localStorage.setItem('list', JSON.stringify(items));
-        }
-
-        function loadFromStorage() {
-            const raw = localStorage.getItem('list');
-            if (!raw) return;
-            try {
-                const items = JSON.parse(raw);
-                items.forEach(({ text, completed }) => createTaskElement(text, completed));
-            } catch (e) {
-                // Corrupt data — start fresh
-                localStorage.removeItem('list');
-            }
-        }
-
-        // ── DOM builder ──────────────────────────────────────────────────────────
-        function createTaskElement(text, completed = false) {
-            const li            = document.createElement('li');
-            const liDiv         = document.createElement('div');
-            const taskStatus    = document.createElement('i');
-            const p             = document.createElement('p');
-            const deleteIcon    = document.createElement('i');
-
-            liDiv.style.cssText = 'display:flex; align-items:center; position:relative;';
-            p.textContent = text;
-            p.style.cursor = 'pointer';
-
-            deleteIcon.className = 'far fa-trash-can';
-            deleteIcon.style.cssText = 'position:absolute; right:0;';
-
-            if (completed) {
-                p.classList.add('completed');
-                taskStatus.className = 'fas fa-check';
-                taskStatus.style.color = 'limegreen';
-            } else {
-                taskStatus.className = 'fas fa-xmark';
-                taskStatus.style.color = 'red';
-            }
-
-            // Toggle completion
-            [p, taskStatus].forEach(el => {
-                el.addEventListener('click', () => {
-                    p.classList.toggle('completed');
-                    const done = p.classList.contains('completed');
-                    taskStatus.classList.replace(done ? 'fa-xmark' : 'fa-check', done ? 'fa-check' : 'fa-xmark');
-                    taskStatus.style.color = done ? 'limegreen' : 'red';
-                    saveToStorage();
-                });
-            });
-
-            // Delete single task
-            deleteIcon.addEventListener('click', () => {
-                deleteIcon.classList.replace('fa-trash-can', 'fa-circle-check');
-                setTimeout(() => {
-                    li.remove();
-                    checkTask();
-                    saveToStorage();
-                }, 500);
-            });
-
-            liDiv.append(taskStatus, p, deleteIcon);
-            li.appendChild(liDiv);
-            taskList.appendChild(li);
-        }
-
-        // ── Add task ─────────────────────────────────────────────────────────────
-        function addTheTask() {
-            const value = inputTask.value.trim();
-            if (!value) {
-                alert('Task cannot be empty.');
-                return;
-            }
-            createTaskElement(value);
-            inputTask.value = '';
-            checkTask();
-            saveToStorage();
-        }
-
-        // ── Empty-state indicator ────────────────────────────────────────────────
-        function checkTask() {
-            const existing = taskList.querySelector('span.empty-msg');
-            if (taskList.querySelectorAll('li').length < 1) {
-                if (!existing) {
-                    const piDiv = document.createElement('span');
-                    piDiv.className = 'empty-msg';
-                    const i = document.createElement('i');
-                    const p = document.createElement('p');
-                    i.className = 'fas fa-ban';
-                    i.style.color = 'rgba(0,0,0,0.4)';
-                    p.style.cssText = 'color:rgba(0,0,0,0.4); display:inline-block;';
-                    i.style.display = 'inline-block';
-                    p.textContent = 'No task available right now.';
-                    piDiv.append(i, p);
-                    taskList.appendChild(piDiv);
-                }
-            } else {
-                existing && existing.remove();
-            }
-        }
-
-        // ── Event listeners ──────────────────────────────────────────────────────
-        addTask.addEventListener('click', addTheTask);
-
-        deleteAllTask.addEventListener('click', () => {
-            taskList.innerHTML = '';
-            checkTask();
-            saveToStorage();
-        });
-
-        window.addEventListener('keydown', e => {
-            if (e.key === 'Enter') addTheTask();
-        });
-
-        function setFocus() {
-            inputTask.focus();
-        }
-
-        // ── Init ─────────────────────────────────────────────────────────────────
-        window.addEventListener('load', () => {
-            loadFromStorage();
-            checkTask();
-            setTimeout(()=>{
-                inputTask.focus();
-            },3000)
-        });
+    <div class="name">
+        <h2>Enter your name</h2>
+        <input type="text" name="nameInput" id="nameInput" placeholder="Z-Axis...">
+        <button id="nameBtn">Set Name</button>
+    </div>
+    <script src="script.js">
     </script>
 </body>
 </html>
