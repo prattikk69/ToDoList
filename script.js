@@ -140,6 +140,7 @@
 
             setName();
             if(user.textContent === "User"){
+                localStorage.setItem("userNameStore", "User");
                 getName();
             }
         });
