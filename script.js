@@ -1,5 +1,5 @@
         if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("/sw.js");
+        navigator.serviceWorker.register("/service-worker.js");
     }
         const inputTask = document.getElementById('inputTask');
         const addTask = document.getElementById('addTask');
