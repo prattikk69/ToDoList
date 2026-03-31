@@ -212,7 +212,7 @@ i:hover{
 @media (max-width: 600px){
     .container{
         width: 90vw;
-        margin-top: 20%;
+        margin-top: 10%;
     }
     input::placeholder,button,#taskList{
         font-size: .8rem;
