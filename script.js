@@ -1,11 +1,7 @@
-        if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("/service-worker.js");
-    }
         const inputTask = document.getElementById('inputTask');
         const addTask = document.getElementById('addTask');
         const taskList = document.getElementById('taskList');
         const deleteAllTask = document.getElementById('deleteAllTask');
-        const User = document.querySelector('.user');
 
         // ── Storage helpers ──────────────────────────────────────────────────────
         function saveToStorage() {
@@ -135,7 +131,7 @@
             loadFromStorage();
             checkTask();
             setTimeout(()=>{
-                setFocus();
+                // setFocus();
             },3000)
             putName();
             if(user.textContent == "User"){
@@ -154,8 +150,9 @@
         nameInput.focus();
     }
     function putName(){
-        user.textContent = localStorage.getItem("userNameStore");
-    }
+    const stored = localStorage.getItem("userNameStore");
+    user.textContent = stored ? stored : "User";
+}
 
     function setName(){
         if(nameInput.value == ""){
@@ -166,7 +163,6 @@
 
         user.textContent = localStorage.getItem("userNameStore");
         nameInput.value = "";
-         
         nameBox.classList.remove('show');
     }
 
