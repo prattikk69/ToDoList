@@ -131,7 +131,7 @@
             loadFromStorage();
             checkTask();
             setTimeout(()=>{
-                // setFocus();
+                setFocus();
             },3000)
             putName();
             if(user.textContent == "User"){

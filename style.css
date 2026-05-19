@@ -220,7 +220,8 @@ i:hover{
     .keyboard{
         display: flex;
     }
-    #tasklist li{
-    font-size: 20px;
-}
+    #tasklist div{
+        font-size: 1rem;
+        margin: 10px 0;
+    }
 }
