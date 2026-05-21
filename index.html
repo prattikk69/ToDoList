@@ -17,26 +17,26 @@
     <span class="orb orb2"></span>
     <span class="orb orb3"></span>
 
-    <div class="container">
-        <nav><div class="user">User</div>
+    <div class="container glassMorphism">
+        <nav><div class="user glassMorphismText">User</div>
             <menu><ul>
-                <li id="deleteAllTask">Delete All Tasks</li>
+                <li id="deleteAllTask" class="glassMorphismText">Delete All Tasks</li>
             </ul></menu>
         </nav>
             <div class="inputField">
-                <input type="text" name="tasks" id="inputTask" placeholder="Enter tasks here...">
-                <button id="addTask">Add Task</button>
+                <input class="glassMorphismInput" type="text" name="tasks" id="inputTask" placeholder="Enter tasks here...">
+                <button class="glassMorphismInput" id="addTask">Add Task</button>
             </div>
             <p>To do list:</p>
             <br>
-        <div class="taskContainer"><ul id="taskList"></ul></div>
-        <div class="keyboard" onclick="setFocus()"><i title="open keyboard" class="far fa-keyboard"></i></div>
+        <div class="taskContainer"><ul class="glassMorphismInput" id="taskList"></ul></div>
+        <div class="keyboard glassMorphismText" onclick="setFocus()"><i title="open keyboard" class="far fa-keyboard"></i></div>
     </div>
-    <div class="name">
+    <div class="name glassMorphism">
         <h2>Enter your name</h2>
-        <input type="text" name="nameInput" id="nameInput" placeholder="Z-Axis...">
-        <button id="nameBtn">Set Name</button>
-        <button onclick="cancel()">Cancel</button>
+        <input class="glassMorphismInput" type="text" name="nameInput" id="nameInput" placeholder="User Name...">
+        <button class="glassMorphismInput" id="nameBtn">Set Name</button>
+        <button class="glassMorphismInput" onclick="cancel()">Cancel</button>
     </div>
     <script src="script.js">
     </script>
