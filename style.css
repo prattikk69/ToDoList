@@ -236,7 +236,10 @@ i:hover{
     display: block;
 }
 @media (max-width: 600px){
-    input::placeholder,button,#taskList{
+    .container{
+        width: 95vw;
+    }
+    input::placeholder,button{
         font-size: .8rem;
     }
     .keyboard{

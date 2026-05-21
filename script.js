@@ -35,6 +35,8 @@
             liDiv.style.cssText = 'display:flex; align-items:center; position:relative;';
             p.textContent = text;
             p.style.cursor = 'pointer';
+            p.style.textAlign = 'justify';
+            p.style.margin = "0 10px";
 
             deleteIcon.className = 'far fa-trash-can';
             deleteIcon.style.cssText = 'position:absolute; right:0;';
